@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Windows;
+using System.Linq;
 
 namespace Exercise_1
 {
@@ -145,6 +146,22 @@ namespace Exercise_1
                     MessageBox.Show(e.ToString());
                 }
             }
+        }
+        public static List<Student> SortData(string btn, List<Student> studentList)
+        {
+            List<Student> tempList = studentList;
+            switch (btn)
+            {
+                case "sortRole": tempList = studentList.OrderBy(student => student.Role).ToList(); break;
+                case "sortFirstName": tempList = studentList.OrderBy(student => student.FirstName).ToList(); break;
+                case "sortLastName": tempList = studentList.OrderBy(student => student.LastName).ToList(); break;
+                case "sortEmail": tempList = studentList.OrderBy(student => student.Email).ToList(); break;
+                case "sortPhoneNumber": tempList = studentList.OrderBy(student => student.Email).ToList(); break;
+                case "sortCourse": tempList = studentList.OrderBy(student => student.Course).ToList(); break;
+                default: break;
+            }
+            return tempList;
+
         }
     }
 }

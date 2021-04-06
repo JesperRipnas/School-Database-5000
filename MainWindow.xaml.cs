@@ -12,9 +12,11 @@ namespace Exercise_1
     {
         private string _filePath = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
         List<Student> Students = new List<Student>();
+        List<Student> CurrentSortedStudents = new List<Student>();
         List<Teacher> Teachers = new List<Teacher>();
         public MainWindow()
         {
+            CurrentSortedStudents = Students;
             _filePath = Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName;
             Student.ReadFile(_filePath + "/data/students.txt", Students);
             Teacher.ReadFile(_filePath + "/data/teachers.txt", Teachers);
@@ -36,14 +38,14 @@ namespace Exercise_1
             {
                 if ((bool)studentCheckbox.IsChecked == true)
                 {
-                    for (int i = 0; i < Students.Count; i++)
+                    for (int i = 0; i < CurrentSortedStudents.Count; i++)
                     {
-                        ListRole.Items.Add(Students[i].Role);
-                        ListFirstName.Items.Add(Students[i].FirstName);
-                        ListLastName.Items.Add(Students[i].LastName);
-                        ListEmail.Items.Add(Students[i].Email);
-                        ListPhoneNumber.Items.Add(Students[i].PhoneNumber);
-                        ListCourse.Items.Add(Students[i].Course);
+                        ListRole.Items.Add(CurrentSortedStudents[i].Role);
+                        ListFirstName.Items.Add(CurrentSortedStudents[i].FirstName);
+                        ListLastName.Items.Add(CurrentSortedStudents[i].LastName);
+                        ListEmail.Items.Add(CurrentSortedStudents[i].Email);
+                        ListPhoneNumber.Items.Add(CurrentSortedStudents[i].PhoneNumber);
+                        ListCourse.Items.Add(CurrentSortedStudents[i].Course);
                     }
                 }
             }
@@ -55,12 +57,7 @@ namespace Exercise_1
         private void StudentCheckbox_UnChecked(object sender, RoutedEventArgs e)
         {
             // Clear the listWindow that shows current students, checking the box again will show them again
-            ListRole.Items.Clear();
-            ListFirstName.Items.Clear();
-            ListLastName.Items.Clear();
-            ListEmail.Items.Clear();
-            ListPhoneNumber.Items.Clear();
-            ListCourse.Items.Clear();
+            ClearAllListBoxes();
         }
         private void ToggleStudentBox()
         {
@@ -101,6 +98,29 @@ namespace Exercise_1
                 BtnCancelAddStudent.Visibility = Visibility.Hidden;
             }
         }
+        private void ClearAllListBoxes()
+        {
+            ListRole.Items.Clear();
+            ListFirstName.Items.Clear();
+            ListLastName.Items.Clear();
+            ListEmail.Items.Clear();
+            ListPhoneNumber.Items.Clear();
+            ListCourse.Items.Clear();
+        }
+        private void UpdateAllStudentsListBox(List<Student> sortedList)
+        {
+            CurrentSortedStudents = sortedList;
+            ClearAllListBoxes();
+            foreach (var sortedStudent in sortedList)
+            {
+                ListRole.Items.Add(sortedStudent.Role.ToString());
+                ListFirstName.Items.Add(sortedStudent.FirstName.ToString());
+                ListLastName.Items.Add(sortedStudent.LastName.ToString());
+                ListEmail.Items.Add(sortedStudent.Email.ToString());
+                ListPhoneNumber.Items.Add(sortedStudent.PhoneNumber.ToString());
+                ListCourse.Items.Add(sortedStudent.Course.ToString());
+            }
+        }
         private void BtnAddStudent_Click(object sender, RoutedEventArgs e)
         {
             ToggleStudentBox();
@@ -111,21 +131,23 @@ namespace Exercise_1
         }
         private void BtnRemoveStudent_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Student.RemoveOneStudentFromFile(_filePath + "/data/students.txt", Students);
-                ListRole.Items.RemoveAt(ListRole.Items.Count - 1);
-                ListFirstName.Items.RemoveAt(ListFirstName.Items.Count - 1);
-                ListLastName.Items.RemoveAt(ListLastName.Items.Count - 1);
-                ListEmail.Items.RemoveAt(ListEmail.Items.Count - 1);
-                ListPhoneNumber.Items.RemoveAt(ListPhoneNumber.Items.Count - 1);
-                ListCourse.Items.RemoveAt(ListCourse.Items.Count - 1);
-                Students.RemoveAt(Students.Count - 1);
-            }
-            catch (ArgumentOutOfRangeException error)
-            {
-                MessageBox.Show("No more students or teachers to remove\n\n" + error);
-            }
+            MessageBox.Show("Not added yet!");
+            //try
+            //{
+            //    Student.RemoveOneStudentFromFile(_filePath + "/data/students.txt", Students);
+            //    ListRole.Items.RemoveAt(ListRole.Items.Count - 1);
+            //    ListFirstName.Items.RemoveAt(ListFirstName.Items.Count - 1);
+            //    ListLastName.Items.RemoveAt(ListLastName.Items.Count - 1);
+            //    ListEmail.Items.RemoveAt(ListEmail.Items.Count - 1);
+            //    ListPhoneNumber.Items.RemoveAt(ListPhoneNumber.Items.Count - 1);
+            //    ListCourse.Items.RemoveAt(ListCourse.Items.Count - 1);
+            //    Students.RemoveAt(Students.Count - 1);
+            //    CurrentSortedStudents.RemoveAt(CurrentSortedStudents.Count - 1);
+            //}
+            //catch (ArgumentOutOfRangeException error)
+            //{
+            //    MessageBox.Show("No more students or teachers to remove\n\n" + error);
+            //}
         }
         private void BtnRemoveTeacher_Click(object sender, RoutedEventArgs e)
         {
@@ -133,27 +155,33 @@ namespace Exercise_1
         }
         private void BtnTopRole_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not added yet!");
+            var returnList = Student.SortData("sortRole", Students);
+            UpdateAllStudentsListBox(returnList);
         }
         private void BtnTopFirstName_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not added yet!");
+            var returnList = Student.SortData("sortFirstName", Students);
+            UpdateAllStudentsListBox(returnList);
         }
         private void BtnTopLastName_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not added yet!");
+            var returnList = Student.SortData("sortLastName", Students);
+            UpdateAllStudentsListBox(returnList);
         }
         private void BtnTopEmail_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not added yet!");
+            var returnList = Student.SortData("sortEmail", Students);
+            UpdateAllStudentsListBox(returnList);
         }
         private void BtnTopPhoneNumber_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not added yet!");
+            var returnList = Student.SortData("sortPhoneNumber", Students);
+            UpdateAllStudentsListBox(returnList);
         }
         private void BtnTopCourse_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not added yet!");
+            var returnList = Student.SortData("sortCourse", Students);
+            UpdateAllStudentsListBox(returnList);
         }
         private void BtnConfirmAddStudent_Click(object sender, RoutedEventArgs e)
         {

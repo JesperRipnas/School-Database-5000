@@ -1,7 +1,7 @@
-Student,Jesper,Ripnäs,jepperipnas@gmail.com,0702392868,OOP
-Student,test,testsson,testsson@gmail.com,0700000000,Javascript
-Student,Åke,Åkesson,ÅÅ@Gmail.com,07328482723,Python
-Student,Olle,Olleson,olle.olleson@yahoo.se,013144212,Python
-Student,Jesper ,Ripnäs,jepee@hotmail.com,0723123123,Javascript
-Student,Kajsa,Bergqvist,Kbergqvist@msn.com,0732918281,Agile
-Student,Johanna,Ripnäs,jr@hotmail.comq,0212811231,OOP
+Student,Jesper,Ripnas,jepperipnas@gmail.com,0702392868,OOP
+Student,Olle,Ollesson,olle.olleson@yahoo.se,011121512,Javascript
+Student,Kajsa,Bergqvist,kb@msn.com,0839287172,Python
+Student,Robin,Olsson,ro@icq.com,0982321221,Python
+Student,Anna,Abrahamsson,aa@hotmail.se,0732123423,Javascript
+Student,Bertil,Bertilsson,bb@altavista.com,08222343,Javascript
+Student,Caesar,Clementin,cc@rippan.se,0721332412,Agile
