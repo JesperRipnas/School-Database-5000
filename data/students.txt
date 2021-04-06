@@ -1,0 +1,5 @@
+Student,Jesper,Ripnäs,jepperipnas@gmail.com,0702392868,OOP
+Student,test,testsson,testsson@gmail.com,0700000000,Javascript
+Student,Åke,Åkesson,ÅÅ@Gmail.com,07328482723,Python
+Student,Olle,Olleson,olle.olleson@yahoo.se,013144212,Python
+Student,Jesper ,Ripnäs,jepee@hotmail.com,0723123123,Javascript
