@@ -5,31 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Exercise_1"
         mc:Ignorable="d"
-        Title="School Database 5000 " Height="500" Width="700" Background="#FF211515">
+        Title="School Database 5000 " Height="493" Width="748" Background="#FF211515">
     <Grid HorizontalAlignment="Left" Height="433" Margin="20,20,0,0" VerticalAlignment="Top" Width="655">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="608*"/>
+            <ColumnDefinition Width="423*"/>
+            <ColumnDefinition Width="185*"/>
             <ColumnDefinition Width="47*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="BtnAddStudent" Content="Add Student" HorizontalAlignment="Right" Margin="0,10,514.45,0" VerticalAlignment="Top" Width="94" Background="#1d1d1f" Height="34" Foreground="White" Click="BtnAddStudent_Click"/>
-        <Button x:Name="BtnAddTeacher" Content="Add Teacher" HorizontalAlignment="Right" Margin="0,51,514.45,0" VerticalAlignment="Top" Width="94" Background="#1d1d1f" Height="34" Foreground="White" Click="BtnAddTeacher_Click"/>
+        <ListBox x:Name="ListRole" HorizontalAlignment="Center" Height="401" Margin="114,32,248.903,0" VerticalAlignment="Top" Width="60" Background="#1d1d1f" Foreground="White" FontSize="14" BorderThickness="0"/>
+        <ListBox x:Name="ListFirstName" HorizontalAlignment="Right" Height="401" Margin="0,32,162.903,0" VerticalAlignment="Top" Width="85" Background="#1d1d1f" Foreground="White" FontSize="14" BorderThickness="0"/>
+        <ListBox x:Name="ListLastName" HorizontalAlignment="Center" Height="401" Margin="261,32,76.903,0" VerticalAlignment="Top" Width="85" Background="#1d1d1f" Foreground="White" FontSize="14" BorderThickness="0"/>
+        <ListBox x:Name="ListEmail" HorizontalAlignment="Center" Height="401" Margin="108.097,32,-56,0" VerticalAlignment="Top" Width="180" Background="#1d1d1f" Foreground="White" FontSize="14" BorderThickness="0" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <ListBox x:Name="ListPhoneNumber" HorizontalAlignment="Center" Height="401" Margin="11.097,32,78,0" VerticalAlignment="Top" Width="96" Background="#1d1d1f" Foreground="White" FontSize="14" BorderThickness="0" Grid.Column="1"/>
+        <ListBox x:Name="ListCourse" HorizontalAlignment="Center" Height="401" Margin="347,32,175,0" VerticalAlignment="Top" Width="86" Background="#1d1d1f" Foreground="White" FontSize="14" BorderThickness="0" Grid.ColumnSpan="2"/>
+        <Button x:Name="BtnAddStudent" Content="Add Student" HorizontalAlignment="Right" Margin="0,10,328.903,0" VerticalAlignment="Top" Width="94" Background="#1d1d1f" Height="34" Foreground="White" Click="BtnAddStudent_Click"/>
+        <Button x:Name="BtnAddTeacher" Content="Add Teacher" HorizontalAlignment="Right" Margin="0,51,328.903,0" VerticalAlignment="Top" Width="94" Background="#1d1d1f" Height="34" Foreground="White" Click="BtnAddTeacher_Click"/>
         <Button x:Name="BtnRemoveStudent" Content="Remove Student" HorizontalAlignment="Left" Margin="0,92,0,0" VerticalAlignment="Top" Width="94" Background="#1d1d1f" Height="34" Foreground="White" Click="BtnRemoveStudent_Click"/>
         <Button x:Name="BtnRemoveTeacher" Content="Remove Teacher" HorizontalAlignment="Left" Margin="0,132,0,0" VerticalAlignment="Top" Width="94" Background="#1d1d1f" Height="34" Foreground="White" Click="BtnRemoveTeacher_Click"/>
-        <ListBox x:Name="ListWindow" HorizontalAlignment="Center" Height="385" Margin="114,38,0,0" VerticalAlignment="Top" Width="541" Background="#1d1d1f" Foreground="White" Grid.ColumnSpan="2" FontSize="14"/>
         <CheckBox x:Name="studentCheckbox" IsChecked="True" Checked="StudentCheckbox_Checked" Unchecked="StudentCheckbox_UnChecked" Content="Students" HorizontalAlignment="Left" Margin="0,186,0,0" VerticalAlignment="Top" Foreground="White"/>
         <CheckBox x:Name="teacherCheckbox" IsChecked="True" Content="Teachers" HorizontalAlignment="Left" Margin="0,206,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <TextBox x:Name="firstname" HorizontalAlignment="Left" Height="23" Margin="114,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Background="#1d1d1f" Foreground="White" FontSize="14"/>
-        <TextBox x:Name="lastname" HorizontalAlignment="Left" Height="23" Margin="227,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Background="#1d1d1f" Foreground="White" FontSize="14"/>
-        <TextBox x:Name="email" HorizontalAlignment="Left" Height="23" Margin="339,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Background="#1d1d1f" Foreground="White" FontSize="14"/>
-        <TextBox x:Name="phonenumber" HorizontalAlignment="Left" Height="23" Margin="450,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Background="#1d1d1f" Foreground="White" FontSize="14"/>
 
-        <Label Content="Course" HorizontalAlignment="Left" Margin="582,-12,0,0" VerticalAlignment="Top" Foreground="white" FontSize="14" Grid.ColumnSpan="2"/>
-        <Label Content="First name" HorizontalAlignment="Left" Margin="124,-13,0,0" VerticalAlignment="Top" Foreground="white" FontSize="14"/>
-        <Label Content="Last name" HorizontalAlignment="Left" Margin="238,-13,0,0" VerticalAlignment="Top" Foreground="white" FontSize="14"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="365,-12,0,0" VerticalAlignment="Top" Foreground="white" FontSize="14"/>
-        <Label Content="Phonenumber" HorizontalAlignment="Left" Margin="448,-12,0,0" VerticalAlignment="Top" Foreground="white" FontSize="14"/>
-        <ComboBox x:Name="CourseBox" Margin="561,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94" Height="23" Background="#1d1d1f" Grid.ColumnSpan="2" BorderBrush="#FF3E3030"/>
-        <Label Content="!note&#xD;&#xA;* Make columns in listbox, way easier to display and sort&#xD;&#xA;* Remove btn should remove marked student/teacher in listbox (not the last index)&#xD;&#xA;* Need to work on teacher functions&#xD;&#xA;* Add popup windows for Add Student/Teacher (Remove row on top)&#xD;&#xA;* How the F do I change color on combobox&#xD;&#xA;&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;" HorizontalAlignment="Left" Margin="112,312,0,-48" VerticalAlignment="Top" Foreground="Red" Height="169" Width="531" Grid.ColumnSpan="2" FontSize="13"/>
+        <ListBox Name="AddStudentBox" ItemsSource="{Binding TheList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="257,36,7,169" Padding="11,20" Background="#1d1d1f" Grid.ColumnSpan="2">
+            <ListBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </ListBox.Resources>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding TheText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Style.Resources>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <TextBox x:Name="firstname" HorizontalAlignment="Left" Height="23" Margin="380,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" Background="#1d1d1f" Foreground="White" FontSize="14" Visibility="Hidden" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="lastname" HorizontalAlignment="Left" Height="23" Margin="380,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" Background="#1d1d1f" Foreground="White" FontSize="14" Visibility="Hidden" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="email" HorizontalAlignment="Left" Height="23" Margin="380,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" Background="#1d1d1f" Foreground="White" FontSize="14" Visibility="Hidden" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="phonenumber" HorizontalAlignment="Left" Height="23" Margin="380,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" Background="#1d1d1f" Foreground="White" FontSize="14" Visibility="Hidden" Grid.ColumnSpan="2"/>
+        <Label x:Name="label_Course" Content="Course" HorizontalAlignment="Left" Margin="265,175,0,0" VerticalAlignment="Top" Foreground="white" FontSize="14" Visibility="Hidden"/>
+        <Label x:Name="label_FirstName" Content="First name" HorizontalAlignment="Left" Margin="265,55,0,0" VerticalAlignment="Top" Foreground="white" FontSize="14" Visibility="Hidden"/>
+        <Label x:Name="label_LastName" Content="Last name" HorizontalAlignment="Left" Margin="265,85,0,0" VerticalAlignment="Top" Foreground="white" FontSize="14" Visibility="Hidden"/>
+        <Label x:Name="label_Email" Content="Email" HorizontalAlignment="Left" Margin="265,115,0,0" VerticalAlignment="Top" Foreground="white" FontSize="14" Visibility="Hidden"/>
+        <Label x:Name="label_PhoneNumber" Content="Phone number" HorizontalAlignment="Left" Margin="265,145,0,0" VerticalAlignment="Top" Foreground="white" FontSize="14" Visibility="Hidden"/>
+        <ComboBox x:Name="CourseBox" Margin="380,180,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="23" Background="#1d1d1f" BorderBrush="#FF3E3030" Visibility="Hidden" Grid.ColumnSpan="2"/>
+        <Label Content="!note&#xA;* Make columns in listbox, way easier to display and sort&#xA;* Remove btn should remove marked student/teacher in listbox (not the last index)&#xA;* Need to work on teacher functions&#xA;* Add popup windows for Add Student/Teacher (Remove row on top)&#xA;* How the F do I change color on combobox&#xA;&#xA;&#x9;&#xA;&#xA;&#x9; " HorizontalAlignment="Left" Margin="158,-250,-642,0" VerticalAlignment="Top" Foreground="Red" Height="169" Width="531" FontSize="13" Grid.Column="2"/>
+        <Button x:Name="BtnTopRole" Content="Role" HorizontalAlignment="Right" Margin="0,11,248.903,0" VerticalAlignment="Top" Width="60" Background="#1d1d1f" Height="21" Foreground="White" Click="BtnTopRole_Click"/>
+        <Button x:Name="BtnTopFirstName" Content="First name" HorizontalAlignment="Right" Margin="0,11,162.903,0" VerticalAlignment="Top" Width="85" Background="#1d1d1f" Height="21" Foreground="White" Click="BtnTopFirstName_Click"/>
+        <Button x:Name="BtnTopLastName" Content="Last name" HorizontalAlignment="Right" Margin="0,11,76.903,0" VerticalAlignment="Top" Width="85" Background="#1d1d1f" Height="21" Foreground="White" Click="BtnTopLastName_Click"/>
+        <Button x:Name="BtnTopEmail" Content="Email" HorizontalAlignment="Right" Margin="0,11,-56,0" VerticalAlignment="Top" Width="180" Background="#1d1d1f" Height="21" Foreground="White" Click="BtnTopEmail_Click" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Button x:Name="BtnTopPhoneNumber" Content="Phone number" HorizontalAlignment="Right" Margin="0,11,78,0" VerticalAlignment="Top" Width="96" Background="#1d1d1f" Height="21" Foreground="White" Click="BtnTopPhoneNumber_Click" Grid.Column="1"/>
+        <Button x:Name="BtnTopCourse" Content="Course" HorizontalAlignment="Right" Margin="0,11,175,0" VerticalAlignment="Top" Width="86" Background="#1d1d1f" Height="21" Foreground="White" Click="BtnTopCourse_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="BtnConfirmAddStudent" Content="Add" HorizontalAlignment="Right" Margin="0,212,151,0" VerticalAlignment="Top" Width="78" Background="#1d1d1f" Height="29" Foreground="White" Click="BtnConfirmAddStudent_Click" FontSize="16" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <Button x:Name="BtnCancelAddStudent" Content="Cancel" HorizontalAlignment="Right" Margin="0,212,21,0" VerticalAlignment="Top" Width="78" Background="#1d1d1f" Height="29" Foreground="White" Click="BtnCancelAddStudent_Click" FontSize="16" Grid.Column="1" Visibility="Hidden"/>
     </Grid>
 </Window>
     

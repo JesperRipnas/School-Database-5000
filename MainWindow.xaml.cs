@@ -2,6 +2,8 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Media;
+using System.Threading;
 
 
 namespace Exercise_1
@@ -25,6 +27,7 @@ namespace Exercise_1
             CourseBox.Items.Add("Javascript");
             CourseBox.Items.Add("Python");
             CourseBox.Items.Add("Agile");
+            AddStudentBox.Visibility = Visibility.Hidden;
         }
         private void StudentCheckbox_Checked(object sender, RoutedEventArgs e)
         {
@@ -35,7 +38,12 @@ namespace Exercise_1
                 {
                     for (int i = 0; i < Students.Count; i++)
                     {
-                        ListWindow.Items.Add(Students[i]);
+                        ListRole.Items.Add(Students[i].Role);
+                        ListFirstName.Items.Add(Students[i].FirstName);
+                        ListLastName.Items.Add(Students[i].LastName);
+                        ListEmail.Items.Add(Students[i].Email);
+                        ListPhoneNumber.Items.Add(Students[i].PhoneNumber);
+                        ListCourse.Items.Add(Students[i].Course);
                     }
                 }
             }
@@ -47,9 +55,107 @@ namespace Exercise_1
         private void StudentCheckbox_UnChecked(object sender, RoutedEventArgs e)
         {
             // Clear the listWindow that shows current students, checking the box again will show them again
-            ListWindow.Items.Clear();
+            ListRole.Items.Clear();
+            ListFirstName.Items.Clear();
+            ListLastName.Items.Clear();
+            ListEmail.Items.Clear();
+            ListPhoneNumber.Items.Clear();
+            ListCourse.Items.Clear();
+        }
+        private void ToggleStudentBox()
+        {
+            if (AddStudentBox.Visibility == Visibility.Hidden)
+            {
+                AddStudentBox.Visibility = Visibility.Visible;
+                label_FirstName.Visibility = Visibility.Visible;
+                label_LastName.Visibility = Visibility.Visible;
+                label_Email.Visibility = Visibility.Visible;
+                label_PhoneNumber.Visibility = Visibility.Visible;
+                label_Course.Visibility = Visibility.Visible;
+
+                firstname.Visibility = Visibility.Visible;
+                lastname.Visibility = Visibility.Visible;
+                email.Visibility = Visibility.Visible;
+                phonenumber.Visibility = Visibility.Visible;
+                CourseBox.Visibility = Visibility.Visible;
+
+                BtnConfirmAddStudent.Visibility = Visibility.Visible;
+                BtnCancelAddStudent.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                AddStudentBox.Visibility = Visibility.Hidden;
+                label_FirstName.Visibility = Visibility.Hidden;
+                label_LastName.Visibility = Visibility.Hidden;
+                label_Email.Visibility = Visibility.Hidden;
+                label_PhoneNumber.Visibility = Visibility.Hidden;
+                label_Course.Visibility = Visibility.Hidden;
+
+                firstname.Visibility = Visibility.Hidden;
+                lastname.Visibility = Visibility.Hidden;
+                email.Visibility = Visibility.Hidden;
+                phonenumber.Visibility = Visibility.Hidden;
+                CourseBox.Visibility = Visibility.Hidden;
+
+                BtnConfirmAddStudent.Visibility = Visibility.Hidden;
+                BtnCancelAddStudent.Visibility = Visibility.Hidden;
+            }
         }
         private void BtnAddStudent_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleStudentBox();
+        }
+        private void BtnAddTeacher_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not added yet!");
+        }
+        private void BtnRemoveStudent_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Student.RemoveOneStudentFromFile(_filePath + "/data/students.txt", Students);
+                ListRole.Items.RemoveAt(ListRole.Items.Count - 1);
+                ListFirstName.Items.RemoveAt(ListFirstName.Items.Count - 1);
+                ListLastName.Items.RemoveAt(ListLastName.Items.Count - 1);
+                ListEmail.Items.RemoveAt(ListEmail.Items.Count - 1);
+                ListPhoneNumber.Items.RemoveAt(ListPhoneNumber.Items.Count - 1);
+                ListCourse.Items.RemoveAt(ListCourse.Items.Count - 1);
+                Students.RemoveAt(Students.Count - 1);
+            }
+            catch (ArgumentOutOfRangeException error)
+            {
+                MessageBox.Show("No more students or teachers to remove\n\n" + error);
+            }
+        }
+        private void BtnRemoveTeacher_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not added yet!");
+        }
+        private void BtnTopRole_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not added yet!");
+        }
+        private void BtnTopFirstName_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not added yet!");
+        }
+        private void BtnTopLastName_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not added yet!");
+        }
+        private void BtnTopEmail_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not added yet!");
+        }
+        private void BtnTopPhoneNumber_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not added yet!");
+        }
+        private void BtnTopCourse_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not added yet!");
+        }
+        private void BtnConfirmAddStudent_Click(object sender, RoutedEventArgs e)
         {
             string fname = firstname.Text;
             string lname = lastname.Text;
@@ -57,30 +163,36 @@ namespace Exercise_1
             string pn = phonenumber.Text;
             string courseSelected = CourseBox.Text;
 
-            // This should be rewritten so we can flag multiple errors and not take one error at a time instead of 
+            //This should be rewritten so we can flag multiple errors and not take one error at a time instead of
             // taking one parameter at a time
-            if(Student.ValidateFirstName(fname))
+            if (Student.ValidateFirstName(fname))
             {
-                if(Person.ValidateLastName(lname))
+                if (Person.ValidateLastName(lname))
                 {
                     if (Student.ValidateEmail(em))
                     {
-                        if(Student.ValidatePhoneNumber(pn))
+                        if (Student.ValidatePhoneNumber(pn))
                         {
-                            if(Student.ValidateCourse(courseSelected))
+                            if (Student.ValidateCourse(courseSelected))
                             {
                                 Student student = new Student(fname, lname, em, pn, courseSelected);
                                 Students.Add(student);
-                                ListWindow.Items.Add(student.ToString());
+                                ListRole.Items.Add(student.Role.ToString());
+                                ListFirstName.Items.Add(student.FirstName.ToString());
+                                ListLastName.Items.Add(student.LastName.ToString());
+                                ListEmail.Items.Add(student.Email.ToString());
+                                ListPhoneNumber.Items.Add(student.PhoneNumber.ToString());
+                                ListCourse.Items.Add(student.Course.ToString());
                                 ClearTextbox();
                                 Student.SaveCurrentUsersToFile(_filePath + "/data/students.txt", Students);
+                                ToggleStudentBox();
                             }
                             else
                             {
                                 MessageBox.Show("You need to select course to add new student");
                             }
                         }
-                        else 
+                        else
                         {
                             MessageBox.Show("Not an valid phone number!");
                         }
@@ -100,26 +212,9 @@ namespace Exercise_1
                 MessageBox.Show("Not a valid first name");
             }
         }
-        private void BtnAddTeacher_Click(object sender, RoutedEventArgs e)
+        private void BtnCancelAddStudent_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not added yet!");
-        }
-        private void BtnRemoveStudent_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Student.RemoveOneStudentFromFile(_filePath + "/data/students.txt", Students);
-                ListWindow.Items.RemoveAt(ListWindow.Items.Count - 1);
-                Students.RemoveAt(Students.Count - 1);
-            }
-            catch (ArgumentOutOfRangeException error)
-            {
-                MessageBox.Show("No more students or teachers to remove\n\n" + error);
-            }
-        }
-        private void BtnRemoveTeacher_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Not added yet!");
+            ToggleStudentBox();
         }
         private void ClearTextbox()
         {
@@ -128,5 +223,14 @@ namespace Exercise_1
             email.Text = "";
             phonenumber.Text = "";
         }
+
+        //private void BtnTopFirstName_MouseEnter(object sender, RoutedEventArgs e)
+        //{
+        //    BtnTopFirstName.Background = Brushes.DarkGray;
+        //}
+        //private void BtnTopLastName_MouseEnter(object sender, RoutedEventArgs e)
+        //{
+        //    BtnTopFirstName.Background = Brushes.DarkGray;
+        //}
     }
 }

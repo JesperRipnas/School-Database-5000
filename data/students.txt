@@ -3,3 +3,5 @@ Student,test,testsson,testsson@gmail.com,0700000000,Javascript
 Student,Åke,Åkesson,ÅÅ@Gmail.com,07328482723,Python
 Student,Olle,Olleson,olle.olleson@yahoo.se,013144212,Python
 Student,Jesper ,Ripnäs,jepee@hotmail.com,0723123123,Javascript
+Student,Kajsa,Bergqvist,Kbergqvist@msn.com,0732918281,Agile
+Student,Johanna,Ripnäs,jr@hotmail.comq,0212811231,OOP
